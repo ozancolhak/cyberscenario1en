@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CyberScenario v1: Realistic Cyber Crisis Simulations</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <script>
+    function nextStep(id) {
+      document.querySelectorAll('.step').forEach(function(s) {
+        s.style.display = 'none';
+      });
+      document.getElementById(id).style.display = 'block';
+      window.scrollTo(0, 0); // Scroll to the top of the page on each step
+    }
+    window.onload = function() {
+      nextStep('step0'); // Start the simulation with the welcome screen
+    };
+  </script>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+  <div class="max-w-5xl mx-auto p-6 space-y-10">
+    <header class="text-center border-b border-gray-700 pb-6">
+      <h1 class="text-4xl font-bold text-cyan-400">CyberScenario: IoT Security Crisis</h1>
+      <p class="text-gray-400 mt-2">ÇOLHAK Corporation – Advanced IoT Crisis Simulation</p>
+    </header>
+
+    <section id="step0" class="step space-y-4 text-center" style="display:none;">
+      <h2 class="text-2xl text-cyan-300 font-semibold">Welcome to the Scenario</h2>
+      <p class="text-gray-300 max-w-2xl mx-auto">In this interactive scenario, you are a member of the ÇOLHAK Corporation's cybersecurity team. Your mission is to analyze an evolving security threat, make critical decisions, and protect the company from a potential disaster. Carefully evaluate the information presented at each step. Are you ready?</p>
+      <img src="giris.png" alt="Cyber Security Center" style="border-radius:8px; border: 2px solid #0bc9d7; box-shadow: 0 0 15px #0bc9d7; max-height: 300px; width: 100%; object-fit: cover;">
+      <button onclick="nextStep('step1')" class="mt-6 bg-cyan-600 hover:bg-cyan-700 px-6 py-3 rounded-lg font-bold text-lg">Start Simulation</button>
+    </section>
+
+    <section id="step1" class="step space-y-4" style="display:none;">
+      <h2 class="text-xl text-cyan-300 font-semibold">🕒 07:15 – First Signal: SIEM Alert</h2>
+      <p>As the day begins, Tier-1 SOC Analyst Ezgi notices a critical alert on the SIEM (Security Information and Event Management) dashboard. A correlation rule has been triggered: <strong class="text-red-400">"Periodic Data Exfiltration from Critical Asset Network to Unknown C2 Server"</strong>.</p>
+      <img src="alert.png" alt="SIEM Alert Dashboard" class="rounded-xl border-2 shadow-lg border-cyan-400 w-full max-w-3xl mx-auto object-cover">
+      <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 mt-4">
+        <pre class="text-sm text-yellow-300 whitespace-pre-wrap"><code>ALERT ID: 8451
+TRIGGER: Correlation Rule - "Suspicious C2 Beaconing"
+SOURCE IP: 10.10.30.15 (VLAN: IoT Devices)
+DESTINATION IP: 88.54.12.219 (Reputation: Low, Category: Unknown)
+PROTOCOL: UDP/443
+OBSERVATION: A 128KB data packet is being sent every 5 minutes for the last 3 hours.</code></pre>
+      </div>
+      <blockquote class="italic text-gray-400 border-l-4 border-cyan-500 pl-4 mt-4">Ezgi: "This isn't normal traffic. The source IP appears to be on the IoT VLAN, but the destination IP is a suspicious address we haven't seen before. I'm escalating this to Tier-2 (Alper) immediately."</blockquote>
+      <button onclick="nextStep('step2')" class="mt-4 bg-cyan-600 hover:bg-cyan-700 px-4 py-2 rounded">Escalate to Alper</button>
+    </section>
+    
+    <section id="step2" class="step space-y-4" style="display:none;">
+      <h2 class="text-xl text-pink-300 font-semibold">🕒 07:30 – Simultaneous Development: Help Desk Ticket</h2>
+      <p>Around the same time as Ezgi's analysis, an automated ticket from an employee arrives at the help desk. The ticket concerns the security camera in the 3rd-floor meeting room.</p>
+       <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+        <h3 class="font-bold text-pink-400">Ticket #7254 - Camera Performance Issue</h3>
+        <p class="mt-2 text-gray-300"><strong>User:</strong> Ayşe Yılmaz</p>
+        <p class="text-gray-300"><strong>Subject:</strong> The camera in the 3rd Floor Ocean Meeting Room is constantly freezing and its web interface is very slow. There was no such problem yesterday morning.</p>
+       </div>
+      <blockquote class="italic text-gray-400 border-l-4 border-pink-500 pl-4 mt-4">Help Desk Note: "Could be a standard network issue. Forwarded to the technical team."</blockquote>
+      <button onclick="nextStep('step3')" class="mt-4 bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded">Continue with Technical Analysis</button>
+    </section>
+
+    <section id="step3" class="step space-y-4" style="display:none;">
+      <h2 class="text-xl text-green-300 font-semibold">🧑‍💻 08:00 – Alper’s In-Depth Analysis</h2>
+      <p>Tier-2 Analyst Alper correlates the SIEM alert from Ezgi with the help desk ticket. He queries the suspicious IP address `10.10.30.15` in the company's Asset Management System.</p>
+      <img src="alert2.png" alt="Asset Management System Interface" class="rounded-xl border-2 shadow-lg border-cyan-400 w-full max-w-3xl mx-auto object-cover">
+      <p class="text-gray-300 mt-4">The result is clear: The IP address belongs to a <strong class="text-green-400">"SmartEye 3000"</strong> model IP camera in the 3rd Floor Ocean Meeting Room. A quick internet search reveals a recently disclosed critical vulnerability (<strong class="text-red-400">CVE-2025-1337</strong>) in this model's firmware. This vulnerability allows for unauthorized Remote Code Execution (RCE).</p>
+      <blockquote class="italic text-gray-400 border-l-4 border-green-500 pl-4 mt-4">Alper: "Okay, it all makes sense now. The slowdown in the camera isn't a malfunction; it's a symptom. The device has been compromised via a known vulnerability and is sending data to a C2 server as part of a botnet. We need to report this to our manager, Ceyda, immediately."</blockquote>
+      <button onclick="nextStep('step4')" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">Schedule Crisis Meeting with Ceyda</button>
+    </section>
+    
+    <section id="step4" class="step space-y-4" style="display:none;">
+      <h2 class="text-xl text-indigo-300 font-semibold">🏢 08:45 – Crisis Meeting with Manager Ceyda and the Moment of Decision</h2>
+      <div class="flex justify-center my-4">
+        <img src="toplanti.png" alt="Crisis Meeting" class="rounded-xl border-2 shadow-lg border-indigo-400 w-full max-w-md mx-auto object-cover"> 
+      </div>
+      <p>Alper summarizes the situation for Cybersecurity Manager Ceyda: "We have an IP camera that has been compromised using the CVE-2025-1337 vulnerability. For now, it's only communicating externally with small data packets, which is likely 'beaconing' activity. We haven't detected any lateral movement within the network yet. But that could happen at any moment."</p>
+      <blockquote class="italic text-gray-400 border-l-4 border-indigo-500 pl-4">Ceyda: "Understood. It seems we have two options. We either eliminate the risk immediately, or we use this opportunity to learn the enemy's tactics. The decision is yours. What do we do?"</blockquote>
+      <p class="font-bold text-yellow-300">Make your decision as a team:</p>
+      <div class="flex flex-col md:flex-row gap-4 mt-4">
+        <div class="w-full md:w-1/2 bg-gray-800 p-4 rounded-lg border border-gray-700">
+            <h3 class="text-lg font-bold text-green-400">Option A: Isolate and Patch the Device (The Safe Route)</h3>
+            <p class="text-sm text-gray-300 mt-2">Immediately disconnect the camera from the network. Take the device to a lab environment, capture its image, and update it with the latest firmware. The threat is stopped instantly.</p>
+            <p class="text-xs text-yellow-400 mt-2"><strong>Risk:</strong> We won't be able to learn more about who the attacker is or what their ultimate goal is.</p>
+            <button onclick="nextStep('step_report_safe')" class="mt-4 w-full bg-green-600 hover:bg-green-700 px-4 py-2 rounded">Implement Option A</button>
+        </div>
+        <div class="w-full md:w-1/2 bg-gray-800 p-4 rounded-lg border border-gray-700">
+            <h3 class="text-lg font-bold text-red-400">Option B: Move to Honeypot (Risky Observation)</h3>
+            <p class="text-sm text-gray-300 mt-2">Redirect the camera's traffic to a "Honeypot" environment that is completely isolated from the main network. Secretly monitor the attacker's behaviors (TTPs) to gather valuable intelligence.</p>
+            <p class="text-xs text-yellow-400 mt-2"><strong>Risk:</strong> The attacker might notice the Honeypot or launch a more aggressive attack (e.g., ransomware) during observation.</p>
+            <button onclick="nextStep('step_report_risk')" class="mt-4 w-full bg-red-600 hover:bg-red-700 px-4 py-2 rounded">Implement Option B</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="step_report_safe" class="step space-y-4" style="display:none;">
+      <h2 class="text-xl text-green-300 font-semibold">📊 Final Report: Threat Contained</h2>
+      <div class="flex justify-center my-4">
+        <img src="basari.png" alt="Successful Intervention" class="rounded-xl border-2 shadow-lg border-green-400 w-full max-w-md mx-auto object-cover">
+      </div>
+      <p>The team decided to implement Option A. The camera's port was immediately disabled on the switch, and the device was physically removed and brought to the cybersecurity lab.</p>
+      <ul class="list-disc list-inside text-gray-300 space-y-2 bg-gray-800 p-4 rounded-lg">
+        <li><strong>Action:</strong> The device was isolated from the network, and its image was taken for forensic analysis.</li>
+        <li><strong>Finding:</strong> The analysis found a simple Perl script running on the device. This script was being used to enlist the device into a DDoS botnet.</li>
+        <li><strong>Resolution:</strong> The device's firmware was updated, patching the vulnerability. A network scan revealed 3 other cameras of the same model that also needed patching, and they were updated.</li>
+        <li><strong>Outcome:</strong> No data breach occurred. Operational disruption was minimal. The crisis was averted before it could escalate, thanks to early and decisive intervention.</li>
+      </ul>
+      <button onclick="nextStep('final')" class="mt-4 bg-cyan-600 hover:bg-cyan-700 px-4 py-2 rounded">Proceed to Lessons Learned</button>
+    </section>
+    
+    <section id="step_report_risk" class="step space-y-4" style="display:none;">
+      <h2 class="text-xl text-red-400 font-semibold">🚨 Final Report: Crisis Escalated!</h2>
+      <div class="flex justify-center my-4">
+        <img src="basarisiz.png" alt="Failed Intervention" class="rounded-xl border-2 shadow-lg border-red-400 w-full max-w-md mx-auto object-cover">
+      </div>
+      <p>The team decided to implement Option B. The camera's traffic was successfully redirected to the Honeypot. However, the experienced attacker noticed abnormalities in the redirected environment (latency, different network architecture, etc.).</p>
+      <ul class="list-disc list-inside text-gray-300 space-y-2 bg-gray-800 p-4 rounded-lg">
+        <li><strong>Action:</strong> Realizing they were being watched, the attacker changed their plan and decided to fully exploit the access they had.</li>
+        <li><strong>Finding:</strong> They began scanning the network for other vulnerable systems from the camera. By cracking a weak service account password, they made a lateral move to a file server.</li>
+        <li><strong>Outcome:</strong> The attacker deployed ransomware on servers containing critical data from the Finance and HR departments. Company operations came to a standstill.</li>
+        <li><strong>Crisis Management:</strong> The incident escalated into a data breach and a major operational crisis. Recovery efforts took weeks, and the company's reputation was severely damaged. Public statements and legal notifications became mandatory.</li>
+      </ul>
+      <button onclick="nextStep('final')" class="mt-4 bg-cyan-600 hover:bg-cyan-700 px-4 py-2 rounded">Proceed to Lessons Learned</button>
+    </section>
+
+    <section id="final" class="step space-y-6" style="display:none;">
+      <h2 class="text-2xl font-semibold text-cyan-300 text-center">📌 Closing: Case Analysis and Lessons Learned</h2>
+      <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+        <h3 class="text-xl font-semibold text-green-400">Technical Lessons</h3>
+        <ul class="list-disc list-inside text-gray-300 mt-2 space-y-1">
+          <li><strong>Asset Management:</strong> Keeping an up-to-date inventory of all devices on the network (especially IoT) is critical for rapid diagnosis during an incident.</li>
+          <li><strong>Network Segmentation:</strong> IoT devices should be kept in separate VLANs, isolated from critical servers and user networks. This makes lateral movement more difficult.</li>
+          <li><strong>Vulnerability Management:</strong> Regular vulnerability scans must be performed for device firmware and software, and patches must be applied quickly.</li>
+        </ul>
+      </div>
+      <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+        <h3 class="text-xl font-semibold text-yellow-400">Procedural Lessons</h3>
+        <ul class="list-disc list-inside text-gray-300 mt-2 space-y-1">
+          <li><strong>SIEM Rules:</strong> The sensitivity of correlation rules that detect activities like anomalous data exfiltration and beaconing should be continuously improved.</li>
+          <li><strong>Incident Response Plan:</strong> There should be predefined and rehearsed response steps for every scenario (e.g., botnet, ransomware).</li>
+          <li><strong>Inter-Departmental Communication:</strong> Correlating user complaints from the Help Desk with SOC alerts allows for the early detection of incidents.</li>
+        </ul>
+      </div>
+       <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+        <h3 class="text-xl font-semibold text-indigo-400">Strategic Lessons</h3>
+        <ul class="list-disc list-inside text-gray-300 mt-2 space-y-1">
+          <li><strong>Risk Appetite:</strong> The balance between "gathering intelligence" and "eliminating the risk immediately" must be carefully evaluated with management involvement in every incident.</li>
+          <li><strong>The Value of Early Intervention:</strong> Acting quickly and decisively when suspicious activity is detected is the most effective way to prevent a potential crisis.</li>
+        </ul>
+      </div>
+      <div class="text-center mt-6">
+        <button onclick="nextStep('step1')" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-bold">Restart Simulation</button>
+        <p class="text-center text-sm text-gray-500 mt-8">ShadowCircuit v4 – © 2025 ÇOLHAK</p>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
