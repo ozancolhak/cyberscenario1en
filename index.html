@@ -5,6 +5,141 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CyberScenario v1: IoT Crisis</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    /* Custom styles to match previous design aesthetics */
+    body {
+      background-color: #1a1a2e; /* Dark background */
+      color: #e0e0e0; /* Light text */
+      font-family: 'Roboto', sans-serif;
+    }
+    .container {
+      background-color: #2a2a4a; /* Container background */
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      padding: 20px;
+      max-width: 950px; /* Wider container */
+      width: 100%;
+      margin: 40px auto;
+    }
+    h1 {
+      font-size: 2.5em;
+      color: #8be9fd; /* Accent blue */
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-size: 2em;
+      color: #8be9fd;
+      border-bottom: 2px solid #444466; /* Interactive bg */
+      padding-bottom: 15px;
+      margin-bottom: 25px;
+    }
+    h3 {
+      font-size: 1.5em;
+      color: #8be9fd;
+    }
+    .btn {
+      background-color: #6272a4; /* Dracula purple */
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1em;
+      transition: all 0.3s ease;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-weight: 700;
+    }
+    .btn:hover {
+      background-color: #7a8ab9; /* Lighter purple */
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .btn-start, .btn-continue {
+      font-size: 1.3em;
+      font-weight: bold;
+      text-align: center;
+      background-color: #50fa7b; /* Accent green */
+      color: #282a36; /* Dark text for contrast */
+      justify-content: center;
+    }
+    .scenario-image {
+      border-radius: 8px;
+      border: 1px solid #444466; /* Interactive bg */
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    .bg-gray-800 {
+      background-color: #282a36; /* Dracula background */
+    }
+    .border-gray-700 {
+      border-color: #6272a4; /* Dracula purple */
+    }
+    .text-cyan-400 { color: #8be9fd; }
+    .text-cyan-300 { color: #8be9fd; }
+    .text-pink-300 { color: #ff79c6; }
+    .text-red-400 { color: #ff5555; }
+    .text-yellow-300 { color: #f1fa8c; }
+    .text-green-300 { color: #50fa7b; }
+    .text-orange-300 { color: #ffb86c; }
+    .text-indigo-300 { color: #bd93f9; }
+    .text-green-400 { color: #50fa7b; }
+    .text-yellow-400 { color: #f1fa8c; }
+    .text-red-400 { color: #ff5555; }
+    .text-blue-400 { color: #8be9fd; }
+
+    /* Roles Info specific styles (adapted from previous example) */
+    #rolesInfo {
+        background-color: #333355; /* Section bg */
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 30px;
+        text-align: left;
+        width: 100%;
+        max-width: 600px;
+        border: 1px solid #444466;
+    }
+    #rolesInfo h3 {
+        color: #50fa7b; /* Accent green */
+        margin-top: 0;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #444466;
+        padding-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    #rolesInfo ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin: 0;
+    }
+    #rolesInfo ul li {
+        margin-bottom: 10px;
+        padding-left: 25px;
+        position: relative;
+        line-height: 1.5;
+    }
+    #rolesInfo ul li:last-child {
+        margin-bottom: 0;
+    }
+    #rolesInfo ul li::before {
+        content: '\f007'; /* User icon */
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        color: #bd93f9; /* Accent purple */
+        position: absolute;
+        left: 0;
+        top: 3px;
+    }
+    #rolesInfo ul li.your-role::before {
+        color: #f1fa8c; /* Accent yellow for your role */
+    }
+    #rolesInfo ul li strong {
+        color: #8be9fd; /* Accent blue */
+    }
+  </style>
   <script>
     function nextStep(id) {
       document.querySelectorAll('.step').forEach(function(s) {
@@ -28,8 +163,23 @@
     <section id="step0" class="step space-y-4 text-center" style="display:none;">
       <h2 class="text-2xl text-cyan-300 font-semibold">Welcome to the Scenario</h2>
       <p class="text-gray-300 max-w-2xl mx-auto">In this interactive scenario, you are a member of the ÇOLHAK Corporation's cybersecurity team. Your mission is to analyze an evolving security threat, make critical decisions, and protect the company from a potential disaster. Carefully evaluate the information presented at each step. Are you ready?</p>
-      <img src="giris.png" alt="Cyber Security Center" style="border-radius:8px; border: 2px solid #0bc9d7; box-shadow: 0 0 15px #0bc9d7; max-height: 300px; width: 100%; object-fit: cover;">
-      <button onclick="nextStep('step1')" class="mt-6 bg-cyan-600 text-white px-6 py-3 rounded-lg font-bold text-lg shadow-lg border-2 border-cyan-700 hover:bg-cyan-500 hover:border-cyan-300 active:bg-cyan-400 hover:-translate-y-1 active:scale-95 transition-all duration-200 ease-in-out">Start Simulation</button>
+      <img src="giris.png" alt="Cyber Security Center" class="scenario-image" style="max-height: 300px; width: 100%; object-fit: cover;">
+
+      <div id="rolesInfo" class="mx-auto">
+          <h3><i class="fa-solid fa-people-arrows"></i> Simulation Roles</h3>
+          <ul>
+              <li class="your-role"><strong>Your Role: Cybersecurity Team Member</strong> - You are part of ÇOLHAK Corporation's cybersecurity team. You will actively participate in incident response, conduct analyses, and make critical decisions.</li>
+              <li><strong>Ezgi (Tier-1 SOC Analyst)</strong> - The eyes and ears of your team, responsible for detecting initial alerts and suspicious activities.</li>
+              <li><strong>Alper (Tier-2 Analyst)</strong> - Your expert who analyzes incidents from Ezgi in more depth and conducts technical investigations.</li>
+              <li><strong>Ceyda (Cybersecurity Manager)</strong> - The leader of your cybersecurity team and the one who makes final decisions during a crisis. Provides strategic guidance.</li>
+              <li><strong>Sales Director</strong> - Responsible for the company's commercial operations, a stakeholder who particularly does not want critical business processes like live demos to be interrupted.</li>
+              <li><strong>Chief Financial Officer (CFO)</strong> - A high-level executive responsible for the company's financial health.</li>
+          </ul>
+      </div>
+
+      <div class="flex justify-center mt-6">
+        <button onclick="nextStep('step1')" class="bg-cyan-600 text-white px-6 py-3 rounded-lg font-bold text-lg shadow-lg border-2 border-cyan-700 hover:bg-cyan-500 hover:border-cyan-300 active:bg-cyan-400 hover:-translate-y-1 active:scale-95 transition-all duration-200 ease-in-out">Start Simulation</button>
+      </div>
     </section>
 
     <section id="step1" class="step space-y-4" style="display:none;">
